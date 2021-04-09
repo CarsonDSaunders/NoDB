@@ -1,0 +1,182 @@
+[
+    {
+        "album_type": "album",
+        "artists": [
+            {
+                "external_urls": {
+                    "spotify": "https://open.spotify.com/artist/6s22t5Y3prQHyaHWUN1R1C"
+                },
+                "href": "https://api.spotify.com/v1/artists/6s22t5Y3prQHyaHWUN1R1C",
+                "id": "6s22t5Y3prQHyaHWUN1R1C",
+                "name": "AJR",
+                "type": "artist",
+                "uri": "spotify:artist:6s22t5Y3prQHyaHWUN1R1C"
+            }
+        ],
+        "available_markets": [
+            "US"
+        ],
+        "copyrights": [
+            {
+                "text": "© 2021 AJR Productions, LLC under exclusive license to BMG Rights Management (US) LLC",
+                "type": "C"
+            },
+            {
+                "text": "℗ 2021 AJR Productions, LLC under exclusive license to BMG Rights Management (US) LLC",
+                "type": "P"
+            }
+        ],
+        "external_ids": {
+            "upc": "4050538668292"
+        },
+        "external_urls": {
+            "spotify": "https://open.spotify.com/album/1y2AzG31F4CuCKQ1rpIzaI"
+        },
+        "genres": [],
+        "href": "https://api.spotify.com/v1/albums/1y2AzG31F4CuCKQ1rpIzaI",
+        "id": "1y2AzG31F4CuCKQ1rpIzaI",
+        "images": [
+            {
+                "height": 640,
+                "url": "https://i.scdn.co/image/ab67616d0000b27359b2fadb704734d7ceea3c2d",
+                "width": 640
+            },
+            {
+                "height": 300,
+                "url": "https://i.scdn.co/image/ab67616d00001e0259b2fadb704734d7ceea3c2d",
+                "width": 300
+            },
+            {
+                "height": 64,
+                "url": "https://i.scdn.co/image/ab67616d0000485159b2fadb704734d7ceea3c2d",
+                "width": 64
+            }
+        ],
+        "label": "S-Curve Records",
+        "name": "OK ORCHESTRA",
+        "popularity": 78,
+        "release_date": "2021-03-26",
+        "release_date_precision": "day",
+        "total_tracks": 13
+    },
+    {
+        "external_urls": {
+            "spotify": "https://open.spotify.com/artist/4GvEc3ANtPPjt1ZJllr5Zl"
+        },
+        "followers": {
+            "href": null,
+            "total": 4164429
+        },
+        "genres": [
+            "dance pop",
+            "electropop",
+            "pop",
+            "pop rap",
+            "post-teen pop"
+        ],
+        "href": "https://api.spotify.com/v1/artists/4GvEc3ANtPPjt1ZJllr5Zl",
+        "id": "4GvEc3ANtPPjt1ZJllr5Zl",
+        "images": [
+            {
+                "height": 640,
+                "url": "https://i.scdn.co/image/f1d8f8439b1120fad1f87e59a223998c85036638",
+                "width": 640
+            },
+            {
+                "height": 320,
+                "url": "https://i.scdn.co/image/8e11c379e2c41bfa09e0b56e080280bc35433728",
+                "width": 320
+            },
+            {
+                "height": 160,
+                "url": "https://i.scdn.co/image/d40bed59b51d8ee79092ba305fa6c8c6bede6cad",
+                "width": 160
+            }
+        ],
+        "name": "Bazzi",
+        "popularity": 80,
+        "type": "artist",
+        "uri": "spotify:artist:4GvEc3ANtPPjt1ZJllr5Zl"
+    },
+    {
+        "album": {
+            "album_type": "compilation",
+            "artists": [
+                {
+                    "external_urls": {
+                        "spotify": "https://open.spotify.com/artist/6zFYqv1mOsgBRQbae3JJ9e"
+                    },
+                    "href": "https://api.spotify.com/v1/artists/6zFYqv1mOsgBRQbae3JJ9e",
+                    "id": "6zFYqv1mOsgBRQbae3JJ9e",
+                    "name": "Billy Joel",
+                    "type": "artist",
+                    "uri": "spotify:artist:6zFYqv1mOsgBRQbae3JJ9e"
+                }
+            ],
+            "available_markets": [
+                "US"
+            ],
+            "external_urls": {
+                "spotify": "https://open.spotify.com/album/7r36rel1M4gyBavfcJP6Yz"
+            },
+            "href": "https://api.spotify.com/v1/albums/7r36rel1M4gyBavfcJP6Yz",
+            "id": "7r36rel1M4gyBavfcJP6Yz",
+            "images": [
+                {
+                    "height": 640,
+                    "url": "https://i.scdn.co/image/ab67616d0000b273649d4f282653ab8be56f447e",
+                    "width": 640
+                },
+                {
+                    "height": 300,
+                    "url": "https://i.scdn.co/image/ab67616d00001e02649d4f282653ab8be56f447e",
+                    "width": 300
+                },
+                {
+                    "height": 64,
+                    "url": "https://i.scdn.co/image/ab67616d00004851649d4f282653ab8be56f447e",
+                    "width": 64
+                }
+            ],
+            "name": "The Essential Billy Joel",
+            "release_date": "2001-10-02",
+            "release_date_precision": "day",
+            "total_tracks": 36,
+            "type": "album",
+            "uri": "spotify:album:7r36rel1M4gyBavfcJP6Yz"
+        },
+        "artists": [
+            {
+                "external_urls": {
+                    "spotify": "https://open.spotify.com/artist/6zFYqv1mOsgBRQbae3JJ9e"
+                },
+                "href": "https://api.spotify.com/v1/artists/6zFYqv1mOsgBRQbae3JJ9e",
+                "id": "6zFYqv1mOsgBRQbae3JJ9e",
+                "name": "Billy Joel",
+                "type": "artist",
+                "uri": "spotify:artist:6zFYqv1mOsgBRQbae3JJ9e"
+            }
+        ],
+        "available_markets": [
+            "US"
+        ],
+        "disc_number": 1,
+        "duration_ms": 336093,
+        "explicit": false,
+        "external_ids": {
+            "isrc": "USSM17300504"
+        },
+        "external_urls": {
+            "spotify": "https://open.spotify.com/track/3FCto7hnn1shUyZL42YgfO"
+        },
+        "href": "https://api.spotify.com/v1/tracks/3FCto7hnn1shUyZL42YgfO",
+        "id": "3FCto7hnn1shUyZL42YgfO",
+        "is_local": false,
+        "name": "Piano Man",
+        "popularity": 69,
+        "preview_url": "https://p.scdn.co/mp3-preview/54682172a43fb85c11b29f807f9ced0dcd3b9dc0?cid=774b29d4f13844c495f206cafdad9c86",
+        "track_number": 1,
+        "type": "track",
+        "uri": "spotify:track:3FCto7hnn1shUyZL42YgfO"
+    }
+]

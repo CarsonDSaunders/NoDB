@@ -1,0 +1,17 @@
+.search-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.searchbar {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.type-selection {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
