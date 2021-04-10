@@ -1,0 +1,7 @@
+.resultBox-container {
+    height: 18em;
+    width: auto;
+    display: flex;
+    justify-content: center;
+    box-sizing: border-box;
+}
