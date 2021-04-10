@@ -15,7 +15,7 @@ export default class ResultBox extends Component {
     render() {
         return (
             <div className="resultBox-container">
-                <SearchResult results={this.props.results} searchType={this.props.searchType}/>
+                <SearchResult results={this.props.results} searchType={this.props.searchType} getListItem={this.props.getListItem} />
             </div>
         )
     }

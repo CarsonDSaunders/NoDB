@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios'
 import './styles/App.css';
 
 import Header from './components/Header'
@@ -11,20 +12,37 @@ class App extends React.Component {
     super(props);
 
     this.state = {
-      item: {},
+      currentList: [],
     }
 
+    this.addListItem = this.addListItem.bind(this);
+    this.addToList = this.addToList.bind(this);
   }
 
+  addListItem(result) {
+    this.addToList(result)
+  }
 
+  addToList(result) {
+    const newItem = {...result};
+    console.log(newItem)
+    axios.post('/list', newItem )
+    .then(() => {
+      axios.get('/list')
+      .then((response) => {
+        this.setState({ currentList: response.data})
+      })
+    })
+    .catch((error) => {console.error(error)})
+}
 
   render() {
     return (
       <div id="App">
         <Header />
-        <Search />
-        <hr />
-        <UserList />
+        <Search addListItem={this.addListItem}/>
+        <hr id="divider" />
+        <UserList currentList={this.state.currentList} />
         <Footer />
       </div>
     )
@@ -32,4 +50,3 @@ class App extends React.Component {
 }
 
 export default App;
-

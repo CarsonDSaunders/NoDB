@@ -2,8 +2,6 @@ const axios = require('axios');
 
 const auth = require('./auth');
 
-
-
 module.exports = {
     searchResults: async (searchType, searchTerm) => {
         let results = [];
@@ -25,9 +23,14 @@ module.exports = {
                         results = response.data.albums.items
                         for (let i = 0; i < results.length; i++) {
                             let currentItem = {}
+                            currentItem.type = searchType;
                             currentItem.artist = results[i].artists[0].name;
                             currentItem.id = results[i].id;
-                            currentItem.thumbnail = results[i].images[1].url;
+                            if (results[i].images[1]) {
+                                currentItem.thumbnail = results[i].images[1].url;
+                            } else {
+                                currentItem.thumbnail = ''
+                            }
                             currentItem.title = results[i].name;
                             const popResponse = await axios.get(
                                 `https://api.spotify.com/v1/albums/${currentItem.id}`,
@@ -41,7 +44,12 @@ module.exports = {
                         for (let i = 0; i < results.length; i++) {
                             let currentItem = {}
                             currentItem.id = results[i].id;
-                            currentItem.thumbnail = results[i].images[1].url;
+                            currentItem.type = searchType;
+                            if (results[i].images[1]) {
+                                currentItem.thumbnail = results[i].images[1].url;
+                            } else {
+                                currentItem.thumbnail = ''
+                            }
                             currentItem.name = results[i].name;
                             currentItem.popularity = results[i].popularity;
                             formattedResults.push(currentItem);
@@ -52,7 +60,12 @@ module.exports = {
                             let currentItem = {}
                             currentItem.artist = results[i].artists[0].name;
                             currentItem.id = results[i].id;
-                            currentItem.thumbnail = results[i].album.images[1].url;
+                            currentItem.type = searchType;
+                            if (results[i].images[1]) {
+                                currentItem.thumbnail = results[i].album.images[1].url;
+                            } else {
+                                currentItem.thumbnail = ''
+                            }
                             currentItem.title = results[i].name;
                             currentItem.popularity = results[i].popularity;
                             formattedResults.push(currentItem);

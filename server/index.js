@@ -11,7 +11,7 @@ let searchResults = [];
 let userList = [];
 let itemId = 0;
 
-//Get Spotify Results
+//* Get Spotify Results
 app.get('/search', async (req, res) => {
     searchResults = []
     const { searchTerm, searchType } = req.query;
@@ -21,26 +21,28 @@ app.get('/search', async (req, res) => {
     res.status(200).send(searchResults)
 })
 
+//* Interactions with UserList
 app.get('/list', (req, res) => {
     res.status(200).send(userList);
 })
 
-app.post('/list/:id', (req, res) => {
-    let currentId = req.params.id;
-    let newItem = { ...searchResults[currentId] };
+app.post('/list/', (req, res) => {
+    let newItem = req.body;
     newItem.listId = itemId;
     itemId++;
     userList.push(newItem);
     res.status(200).send(userList);
 })
 
-app.put('/list', (req, res) => {
-    userList[1].note = req.body.note; //req.body.note
+app.put('/list/:id', (req, res) => {
+    const itemID = req.params;
+    userList[itemID].note = req.body.note; //req.body.note
     res.status(200).send(userList);
 })
 
-app.delete('/list', (req, res) => {
-    userList.splice(1, 1)
+app.delete('/list/:id', (req, res) => {
+    const itemID = req.params;
+    userList.splice(itemID, 1)
     res.status(200).send(userList);
 })
 
