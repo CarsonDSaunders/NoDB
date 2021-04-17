@@ -1,49 +1,202 @@
-import React, { Component } from 'react';
-import placeholder from '../styles/Placeholder.png'
-import '../styles/ListItem.css';
+import React, { Component } from "react";
+import placeholder from "../styles/Placeholder.png";
+import "../styles/ListItem.css";
 
 export default class ListItem extends Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            noshow: true,
+            textvalue: this.props.item.userNote,
+            itemID: this.props.item.listId,
+            hasChanged: false,
+        };
+
+        this.determineEditorFn = this.determineEditorFn.bind(this);
+        this.handleOpenEditor = this.handleOpenEditor.bind(this);
+        this.handleChange = this.handleChange.bind(this);
+        this.handleCloseEditor = this.handleCloseEditor.bind(this);
+    }
+
+    determineEditorFn() {
+        if (this.state.noshow === true) {
+            this.handleOpenEditor();
+        } else {
+            this.handleCloseEditor();
+        }
+    }
+
+    handleOpenEditor() {
+        if (this.state.noshow === true) {
+            this.setState({ noshow: false });
+        } else {
+            this.setState({ noshow: true });
+        }
+    }
+
+    handleCloseEditor() {
+        this.setState({ noshow: true });
+        if (this.state.hasChanged === true) {
+            this.props.addNoteValue(this.state.textvalue, this.state.itemID);
+        }
+        this.setState({ hasChanged: false });
+    }
+
+    handleChange(val) {
+        this.setState({ textvalue: val });
+        this.setState({ hasChanged: true });
+    }
+
     render() {
-        const userList = this.props.currentList
-        const listArr = userList.map((ele, i) => {
-            if (ele.type === 'album') {
-                return (
-                    <div key={i} id={ele.id} className="list-item">
-                        <img className="listImg" src={ele.thumbnail ? ele.thumbnail : placeholder} alt="" />
+        if (this.props.item.type === "album") {
+            return (
+                <li>
+                    <div className="list-item">
+                        <img
+                            className="listImg"
+                            src={
+                                this.props.item.thumbnail
+                                    ? this.props.item.thumbnail
+                                    : placeholder
+                            }
+                            alt=""
+                        />
                         <div className="itemInfo">
-                            <p className="title">{ele.title}</p>
-                            <p className="artist">{ele.artist}</p>
+                            <p className="title">{this.props.item.title}</p>
+                            <p className="artist">{this.props.item.artist}</p>
                         </div>
-                        <h2 className="popularity">{ele.popularity}</h2>
-                    </div>
-                )
-            } else if (ele.type === 'artist') {
-                return (
-                    <div key={i} className="list-item">
-                        <img className="resultImg" src={ele.thumbnail ? ele.thumbnail : placeholder} alt="" />
-                        <div className="itemInfo">
-                            <p className="artist-title" >{ele.name}</p>
+                        <button onClick={() => this.determineEditorFn()}>
+                            <i
+                                className={
+                                    this.state.noshow
+                                        ? "fa fa-pencil"
+                                        : "fa fa-pencil pencil-toggle"
+                                }
+                                aria-hidden="true"
+                            />
+                        </button>
+                        <div
+                            className={
+                                this.state.noshow ? "note noshow" : "note"
+                            }
+                        >
+                            <form>
+                                <input
+                                    className="note-text"
+                                    type="text"
+                                    placeholder="Insert Note Here"
+                                    maxLength="50"
+                                    value={this.state.textvalue}
+                                    onChange={(e) =>
+                                        this.handleChange(e.target.value)
+                                    }
+                                />
+                            </form>
                         </div>
-                        <h2 className="popularity">{ele.popularity}</h2>
+                        <p className="listItemType">Album</p>
+                        <h2 className="popularity">
+                            {this.props.item.popularity}
+                        </h2>
+                        <button onClick={() => this.props.deleteListItem()}>
+                            <i className="fa fa-trash" aria-hidden="true"></i>
+                        </button>
                     </div>
-                )
-            } else if (ele.type === 'track') {
-                return (
-                    <div key={i} className="list-item">
-                        <img className="resultImg" src={ele.thumbnail ? ele.thumbnail : placeholder} alt="" />
-                        <div className="itemInfo">
-                            <p className="title">{ele.title}</p>
-                            <p className="artist">{ele.artist}</p>
-                        </div>
-                        <h2 className="popularity">{ele.popularity}</h2>
+                </li>
+            );
+        } else if (this.props.item.type === "artist") {
+            return (
+                <div className="list-item">
+                    <img
+                        className="resultImg"
+                        src={
+                            this.props.item.thumbnail
+                                ? this.props.item.thumbnail
+                                : placeholder
+                        }
+                        alt=""
+                    />
+                    <div className="itemInfo">
+                        <p className="artist-title">{this.props.item.title}</p>
                     </div>
-                )
-            }
-        })
-        return (
-            <div className="allListItems">
-                {listArr}
-            </div>
-        )
+                    <button onClick={() => this.determineEditorFn()}>
+                        <i
+                            className={
+                                this.state.noshow
+                                    ? "fa fa-pencil"
+                                    : "fa fa-pencil pencil-toggle"
+                            }
+                            aria-hidden="true"
+                        />
+                    </button>
+                    <div className={this.state.noshow ? "note noshow" : "note"}>
+                        <form>
+                            <input
+                                className="note-text"
+                                type="text"
+                                placeholder="Insert Note Here"
+                                maxLength="50"
+                                value={this.state.textvalue}
+                                onChange={(e) =>
+                                    this.handleChange(e.target.value)
+                                }
+                            />
+                        </form>
+                    </div>
+                    <p className="listItemType">Artist</p>
+                    <h2 className="popularity">{this.props.item.popularity}</h2>
+                    <button onClick={() => this.props.deleteListItem()}>
+                        <i className="fa fa-trash" aria-hidden="true"></i>
+                    </button>
+                </div>
+            );
+        } else if (this.props.item.type === "track") {
+            return (
+                <div className="list-item">
+                    <img
+                        className="resultImg"
+                        src={
+                            this.props.item.thumbnail
+                                ? this.props.item.thumbnail
+                                : placeholder
+                        }
+                        alt=""
+                    />
+                    <div className="itemInfo">
+                        <p className="title">{this.props.item.title}</p>
+                        <p className="artist">{this.props.item.artist}</p>
+                    </div>
+                    <button onClick={() => this.determineEditorFn()}>
+                        <i
+                            className={
+                                this.state.noshow
+                                    ? "fa fa-pencil"
+                                    : "fa fa-pencil pencil-toggle"
+                            }
+                            aria-hidden="true"
+                        />
+                    </button>
+                    <div className={this.state.noshow ? "note noshow" : "note"}>
+                        <form>
+                            <input
+                                className="note-text"
+                                type="text"
+                                placeholder="Insert Note Here"
+                                maxLength="50"
+                                value={this.state.textvalue}
+                                onChange={(e) =>
+                                    this.handleChange(e.target.value)
+                                }
+                            />
+                        </form>
+                    </div>
+                    <p className="listItemType">Track</p>
+                    <h2 className="popularity">{this.props.item.popularity}</h2>
+                    <button onClick={() => this.props.deleteListItem()}>
+                        <i className="fa fa-trash" aria-hidden="true"></i>
+                    </button>
+                </div>
+            );
+        }
     }
 }

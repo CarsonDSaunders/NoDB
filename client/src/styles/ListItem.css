@@ -1,5 +1,5 @@
 .list-item {
-    background-color: white;
+    background-color: #fff;
     height: 5em;
     width: 35em;
     display: flex;
@@ -8,12 +8,20 @@
     box-sizing: border-box;
     padding: 0.5em;
     border-radius: 1em;
-    margin: 0.5em
+    margin: 0.5em;
+    position: relative;
+    z-index: 5;
+}
+
+.list-point {
+    list-style-type:none;
+    margin: 0;
+    padding: 0;
 }
 
 .listImg {
-    height: 5em;
-    width: 5em;
+    height: 4em;
+    width: 4em;
     border-radius: 50%;
 }
 
@@ -29,7 +37,9 @@
     padding: 0.5em;
 }
 
-.title, .artist, .artist-title {
+.title,
+.artist,
+.artist-title {
     margin: 0.1em;
     height: 2.5em;
     float: right;
@@ -41,10 +51,10 @@
     font-size: large;
     font-weight: 500;
     line-height: 1em;
-    justify-content: flex-start; 
+    justify-content: flex-start;
     overflow: hidden;
     text-overflow: ellipsis;
-    word-wrap:break-word;  
+    word-wrap: break-word;
 }
 
 .artist {
@@ -52,6 +62,48 @@
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
+}
+
+.pencil-toggle {
+    color: green;
+}
+
+.fa-trash {
+    color: rgb(255, 0, 0);
+}
+
+.note {
+    height: 2.5em;
+    width: 10em;
+    font-family: "Roboto", sans-serif;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(155, 155, 155, 0.75);
+    background: url(data:;base64,iVBORw0KGgoAAAANSUhEUgAAAAIAAAACCAYAAABytg0kAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAABl0RVh0U29mdHdhcmUAUGFpbnQuTkVUIHYzLjUuNUmK/OAAAAATSURBVBhXY2RgYNgHxGAAYuwDAA78AjwwRoQYAAAAAElFTkSuQmCC) repeat scroll transparent\9;
+    /* ie fallback png background image */
+    z-index: 9999;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    outline: none;
+    border: none;
+    border-radius: 0.5em;
+    left: 11.25em;
+    top: 1.25em;
+}
+
+.noshow {
+    display: none;
+}
+
+.note-text {
+    height: 2em;
+    width: 10em;
+    font-family: "Roboto", sans-serif;
 }
 
 .artist-title {
@@ -62,5 +114,4 @@
     justify-content: center;
 }
 
-.popularity {
-}
+.popularity {}

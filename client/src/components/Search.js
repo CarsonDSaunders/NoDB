@@ -1,77 +1,151 @@
-import React, { Component } from 'react';
-import axios from 'axios';
-import '../styles/Search.css';
+import React, { Component } from "react";
+import axios from "axios";
+import "../styles/Search.css";
 
-import ResultBox from './ResultBox';
+import ResultBox from "./ResultBox";
 
 export default class Search extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            searchTerm: '',
-            searchType: 'album',
+            searchTerm: "",
+            searchType: "album",
             results: [],
-        }
+            isShown: false,
+        };
 
         this.handleBarChange = this.handleBarChange.bind(this);
         this.changeToAlbums = this.changeToAlbums.bind(this);
         this.changeToArtists = this.changeToArtists.bind(this);
         this.changeToTracks = this.changeToTracks.bind(this);
+        this.clearSearchBar = this.clearSearchBar.bind(this);
         this.performSearch = this.performSearch.bind(this);
         this.getListItem = this.getListItem.bind(this);
     }
 
     handleBarChange(val) {
+        if (val === '') {
+            this.clearSearchBar();
+        }
         this.setState({ searchTerm: val });
     }
 
     changeToAlbums() {
-        this.setState({ searchType: 'album' })
+        this.clearSearchBar();
+        this.setState({ searchType: "album" });
     }
 
     changeToArtists() {
-        this.setState({ searchType: 'artist' })
+        this.clearSearchBar();
+        this.setState({ searchType: "artist" });
     }
 
     changeToTracks() {
-        this.setState({ searchType: 'track' })
+        this.clearSearchBar();
+        this.setState({ searchType: "track" });
+    }
+
+    clearSearchBar() {
+        this.setState({
+            searchTerm: "",
+            searchType: "album",
+            results: [],
+            isShown: false,
+        });
     }
 
     performSearch(searchTerm) {
-        axios.get(`/search?searchTerm=${this.state.searchTerm}&searchType=${this.state.searchType}`)
-            .then((response) => {
-                this.setState({ results: response.data })
-            })
+        if (!this.state.searchTerm) {
+            return;
+        } else {
+            this.setState({ isShown: true });
+            axios
+                .get(
+                    `/search?searchTerm=${this.state.searchTerm}&searchType=${this.state.searchType}`
+                )
+                .then((response) => {
+                    for (let i = 0; i < response.data.length; i++) {
+                        if (response.data[i].type === "artist") {
+                            response.data[i].title = response.data[i].name;
+                            response.data[i].artist = "n/a";
+                        }
+                    }
+                    this.setState({ results: response.data });
+                });
+        }
     }
 
     getListItem(resultID) {
         let currentSearch = [...this.state.results];
-        let filtResult = currentSearch.filter((ele, i) => (ele.id === resultID));
+        let filtResult = currentSearch.filter((ele, i) => ele.id === resultID);
         this.props.addListItem(filtResult[0]);
-    }
-
-
-    addListItem() {
-        ;
     }
 
     render() {
         return (
             <div className="search-container">
-                <form className="search">
-                    <input className="searchbar" type="search" onChange={e => this.handleBarChange(e.target.value)} />
-                    <button className="submit" type="button" onClick={() => this.performSearch(this.state.searchTerm)}>Search</button>
-
-                </form>
-                <ResultBox results={this.state.results} searchType={this.state.searchType} getListItem={this.getListItem} />
-                <br />
-                <div className="type-selection">
-                    <button type="button" onClick={() => this.changeToAlbums()}>Albums</button>
-                    <button type="button" onClick={() => this.changeToArtists()}>Artists</button>
-                    <button type="button" onClick={() => this.changeToTracks()}>Tracks</button>
+                <div className="search-intro">
+                    <h2 className="intro-text">I want some</h2>
+                    <div className="type-selection">
+                        <button
+                            type="button"
+                            className={
+                                this.state.searchType === "album"
+                                    ? "type-btn active-btn"
+                                    : "type-btn"
+                            }
+                            onClick={() => this.changeToAlbums()}
+                        >
+                            Album
+                        </button>
+                        <button
+                            type="button"
+                            className={
+                                this.state.searchType === "artist"
+                                    ? "type-btn active-btn"
+                                    : "type-btn"
+                            }
+                            onClick={() => this.changeToArtists()}
+                        >
+                            Artist
+                        </button>
+                        <button
+                            type="button"
+                            className={
+                                this.state.searchType === "track"
+                                    ? "type-btn active-btn"
+                                    : "type-btn"
+                            }
+                            onClick={() => this.changeToTracks()}
+                        >
+                            Track
+                        </button>
+                    </div>
+                    <h2 className="intro-text">called</h2>
                 </div>
+                <br />
+                <form className="search">
+                    <input
+                        className="searchbar"
+                        value={this.state.searchTerm}
+                        type="search"
+                        onChange={(e) => this.handleBarChange(e.target.value)}
+                    />
+                    <button
+                        className="submit"
+                        type="button"
+                        onClick={() =>
+                            this.performSearch(this.state.searchTerm)
+                        }
+                    >
+                        <i className="fa fa-search" aria-hidden="true"></i>
+                    </button>
+                </form>
+                {this.state.isShown && (<ResultBox className="daBox" results={this.state.results} searchType={this.state.searchType} getListItem={this.getListItem} />)}
+
+                <br />
             </div>
-        )
+        );
     }
 }

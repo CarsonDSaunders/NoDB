@@ -61,7 +61,7 @@ module.exports = {
                             currentItem.artist = results[i].artists[0].name;
                             currentItem.id = results[i].id;
                             currentItem.type = searchType;
-                            if (results[i].images[1]) {
+                            if (results[i].album.images[1]) {
                                 currentItem.thumbnail = results[i].album.images[1].url;
                             } else {
                                 currentItem.thumbnail = ''

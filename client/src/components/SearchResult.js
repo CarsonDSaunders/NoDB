@@ -7,8 +7,9 @@ export default class SearchResult extends Component {
         const initResults = this.props.results;
         const resultsArr = initResults.map((ele, i) => {
             if (this.props.searchType === 'album') {
+                const { id, thumbnail, title, artist, popularity } = ele;
                 return (
-                    <div key={i} id={ele.id} className="result" onClick={(e) => {
+                    <div key={i} id={id} className="result" onClick={(e) => {
                         e.preventDefault();
                         let correctResult = e;
                         if (e.target.parentElement.className === "itemInfo") {
@@ -20,55 +21,57 @@ export default class SearchResult extends Component {
                         }
                         this.props.getListItem(correctResult)
                         }}>
-                        <img className="resultImg" src={ele.thumbnail ? ele.thumbnail : placeholder} alt="" />
+                        <img className="resultImg" src={thumbnail ? thumbnail : placeholder} alt="" />
                         <div className="itemInfo">
-                            <p className="title">{ele.title}</p>
-                            <p className="artist">{ele.artist}</p>
+                            <p className="title">{title}</p>
+                            <p className="artist">{artist}</p>
                         </div>
-                        <h2 className="popularity">{ele.popularity}</h2>
+                        <h2 className="popularity">{popularity}</h2>
                     </div>
                 )
             } else if (this.props.searchType === 'artist') {
+                const { id, thumbnail, title, popularity } = ele;
                 return (
-                    <div key={i} className="result" onClick={(e) => {
+                    <div key={i} id={id} className="result" onClick={(e) => {
                         e.preventDefault();
                         let correctResult = e;
                         if (e.target.parentElement.className === "itemInfo") {
-                            correctResult = e.target.parentElement.parentElement;
+                            correctResult = e.target.parentElement.parentElement.id;
                         } else if (e.target.parentElement.className === 'result'){
-                            correctResult = e.target.parentElement;
+                            correctResult = e.target.parentElement.id;
                         } else {
-                            correctResult = e.target;
+                            correctResult = e.target.id;
                         }
                         this.props.getListItem(correctResult)
                         }}>
-                        <img className="resultImg" src={ele.thumbnail ? ele.thumbnail : placeholder} alt="" />
+                        <img className="resultImg" src={thumbnail ? thumbnail : placeholder} alt="" />
                         <div className="itemInfo">
-                            <p className="artist-title" >{ele.name}</p>
+                            <p className="artist-title" >{title}</p>
                         </div>
-                        <h2 className="popularity">{ele.popularity}</h2>
+                        <h2 className="popularity">{popularity}</h2>
                     </div>
                 )
             } else if (this.props.searchType === 'track') {
+                const { id, thumbnail, title, artist, popularity } = ele;
                 return (
-                    <div key={i} className="result" onClick={(e) => {
+                    <div key={i} id={id} className="result" onClick={(e) => {
                         e.preventDefault();
                         let correctResult = e;
                         if (e.target.parentElement.className === "itemInfo") {
-                            correctResult = e.target.parentElement.parentElement;
+                            correctResult = e.target.parentElement.parentElement.id;
                         } else if (e.target.parentElement.className === 'result'){
-                            correctResult = e.target.parentElement;
+                            correctResult = e.target.parentElement.id;
                         } else {
-                            correctResult = e.target;
+                            correctResult = e.target.id;
                         }
                         this.props.getListItem(correctResult)
                         }}>
-                        <img className="resultImg" src={ele.thumbnail ? ele.thumbnail : placeholder} alt="" />
+                        <img className="resultImg" src={thumbnail ? thumbnail : placeholder} alt="" />
                         <div className="itemInfo">
-                            <p className="title">{ele.title}</p>
-                            <p className="artist">{ele.artist}</p>
+                            <p className="title">{title}</p>
+                            <p className="artist">{artist}</p>
                         </div>
-                        <h2 className="popularity">{ele.popularity}</h2>
+                        <h2 className="popularity">{popularity}</h2>
                     </div>
                 )
             } else {

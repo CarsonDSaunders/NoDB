@@ -35,14 +35,16 @@ app.post('/list/', (req, res) => {
 })
 
 app.put('/list/:id', (req, res) => {
-    const itemID = req.params;
-    userList[itemID].note = req.body.note; //req.body.note
+    const itemID  =  Number(req.params.id);
+    let correctID = userList.findIndex((ele, i) => (userList[i].listId === itemID))
+    userList[correctID].userNote = req.body.userNote;
     res.status(200).send(userList);
 })
 
 app.delete('/list/:id', (req, res) => {
-    const itemID = req.params;
-    userList.splice(itemID, 1)
+    const itemID = req.params.id;
+    let correctID = userList.findIndex((ele, i) => (userList[i].listId === itemID))
+    userList.splice(correctID, 1)
     res.status(200).send(userList);
 })
 
