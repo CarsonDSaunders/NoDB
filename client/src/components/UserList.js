@@ -43,9 +43,11 @@ export default class UserList extends Component {
 
         return (
             <div className="list-container">
-                <h2 className="list-header">My List</h2>
-                <button className="clearBtn" onClick={() => this.props.clearUserList()}>Clear</button>
-                <button className="export" onClick={() => this.handleExport()}>Export</button>
+                <div className="list-header">
+                    <button className="clearBtn" onClick={() => this.props.clearUserList()}>Clear</button>
+                    <h2 className="list-title">My List</h2>
+                    <button className="exportBtn" onClick={() => this.handleExport()}>Export</button>
+                </div>
                 <ul className="list-point">
                     {userList.map((ele, i) => {
                         return <ListItem key={i} id={ele.id} item={ele} deleteListItem={this.props.deleteListItem} addNoteValue={this.props.addNoteValue} />

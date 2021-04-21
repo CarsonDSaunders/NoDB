@@ -10,12 +10,28 @@
     box-sizing: border-box;
 }
 
-.list-header {
+.list-title {
     color: white;
-    font-size: xx-large
+    font-size: 2.5em;
 }
 
-.clearBtn {
-    float: right;
-    position: absolute;
+.list-header {
+    width: 40em;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    text-transform: uppercase;
+}
+
+.clearBtn, .exportBtn {
+    background: none;
+    color: white;
+    width: 8em;
+    height: 3em;
+    font-weight: 800;
+    font-size: 0.9em;
+    cursor: pointer;
+    border: 0.35em solid white;
+    border-radius: 0.25em;
 }

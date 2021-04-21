@@ -66,7 +66,7 @@ export default class ListItem extends Component {
                             <p className="title">{this.props.item.title}</p>
                             <p className="artist">{this.props.item.artist}</p>
                         </div>
-                        <button onClick={() => this.determineEditorFn()}>
+                        <button className="note-editor-btn" onClick={() => this.determineEditorFn()}>
                             <i
                                 className={
                                     this.state.noshow
@@ -98,7 +98,7 @@ export default class ListItem extends Component {
                         <h2 className="popularity">
                             {this.props.item.popularity}
                         </h2>
-                        <button onClick={() => this.props.deleteListItem()}>
+                        <button onClick={() => this.props.deleteListItem(this.state.itemID)}>
                             <i className="fa fa-trash" aria-hidden="true"></i>
                         </button>
                     </div>
@@ -119,7 +119,7 @@ export default class ListItem extends Component {
                     <div className="itemInfo">
                         <p className="artist-title">{this.props.item.title}</p>
                     </div>
-                    <button onClick={() => this.determineEditorFn()}>
+                    <button className="note-editor-btn" onClick={() => this.determineEditorFn()}>
                         <i
                             className={
                                 this.state.noshow
@@ -145,7 +145,7 @@ export default class ListItem extends Component {
                     </div>
                     <p className="listItemType">Artist</p>
                     <h2 className="popularity">{this.props.item.popularity}</h2>
-                    <button onClick={() => this.props.deleteListItem()}>
+                    <button onClick={() => this.props.deleteListItem(this.state.itemID)}>
                         <i className="fa fa-trash" aria-hidden="true"></i>
                     </button>
                 </div>
@@ -166,7 +166,7 @@ export default class ListItem extends Component {
                         <p className="title">{this.props.item.title}</p>
                         <p className="artist">{this.props.item.artist}</p>
                     </div>
-                    <button onClick={() => this.determineEditorFn()}>
+                    <button className="note-editor-btn" onClick={() => this.determineEditorFn()}>
                         <i
                             className={
                                 this.state.noshow
@@ -192,7 +192,7 @@ export default class ListItem extends Component {
                     </div>
                     <p className="listItemType">Track</p>
                     <h2 className="popularity">{this.props.item.popularity}</h2>
-                    <button onClick={() => this.props.deleteListItem()}>
+                    <button onClick={() => this.props.deleteListItem(this.state.itemID)}>
                         <i className="fa fa-trash" aria-hidden="true"></i>
                     </button>
                 </div>

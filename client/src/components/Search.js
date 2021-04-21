@@ -127,7 +127,7 @@ export default class Search extends Component {
                 <br />
                 <form className="search">
                     <input
-                        className="searchbar"
+                        id="searchbar"
                         value={this.state.searchTerm}
                         type="search"
                         onChange={(e) => this.handleBarChange(e.target.value)}

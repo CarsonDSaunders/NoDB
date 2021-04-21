@@ -1,7 +1,7 @@
 import React from "react";
 import axios from "axios";
 import "./styles/App.css";
-import BGVideo from "./styles/bgVideo.mp4"
+import BGImg from "./styles/BGFinal.png";
 
 import Header from "./components/Header";
 import Search from "./components/Search";
@@ -14,6 +14,7 @@ class App extends React.Component {
 
         this.state = {
             currentList: [],
+            avgPopularity: 0,
         };
 
         this.addListItem = this.addListItem.bind(this);
@@ -21,6 +22,7 @@ class App extends React.Component {
         this.deleteListItem = this.deleteListItem.bind(this);
         this.clearUserList = this.clearUserList.bind(this);
         this.addNoteValue = this.addNoteValue.bind(this);
+        this.updateAvgPopularity = this.updateAvgPopularity.bind(this);
     }
 
     addListItem(result) {
@@ -35,18 +37,21 @@ class App extends React.Component {
             .then(() => {
                 axios.get("/list").then((response) => {
                     this.setState({ currentList: response.data });
+                    this.updateAvgPopularity();
                 });
             })
             .catch((error) => {
                 console.error(error);
             });
+        
     }
 
-    deleteListItem() {
+    deleteListItem(id) {
         axios
-            .delete("/list/:id")
+            .delete(`/list/${id}`)
             .then((response) => {
                 this.setState({ currentList: response.data });
+                this.updateAvgPopularity();
             })
             .catch((error) => {
                 console.error(error);
@@ -64,19 +69,17 @@ class App extends React.Component {
                     console.error(error);
                 });
         }
-        this.setState({ currentList: [] });
+        this.setState({ currentList: [], avgPopularity: 0 });
     }
 
     addNoteValue(val, itemID) {
-        // let updatedItem = this.state.currentList[ItemID];
-        // let int
         console.log(val);
         console.log(itemID);
         axios
             .put(`/list/${itemID}`, { userNote: val })
             .then(() => {
                 axios.get("/list").then((response) => {
-                    this.setState({ currentList: response.data });
+                    this.setState({ avgPopularity: 0 });
                 });
             })
             .catch((error) => {
@@ -84,16 +87,25 @@ class App extends React.Component {
             });
     }
 
+    updateAvgPopularity() {
+        this.setState({ avgPopularity: 0 });
+        let list = this.state.currentList;
+        let avgPopularity = this.state.avgPopularity;
+        for (let i = 0; i < list.length; i++) {
+            avgPopularity += list[i].popularity;
+        }
+        avgPopularity = avgPopularity / list.length;
+        this.setState({ avgPopularity: avgPopularity });
+    }
+
     render() {
         return (
             <div id="App">
-            <video playsInline autoPlay muted loop poster="https://pasteboard.co/JXNSquE.png" id="bgVideo">
-              <source src={ BGVideo } type='video/mp4' />
-            </video>
+                <img id="bgImg" src={BGImg} alt="People partying" />
                 <Header />
                 <Search addListItem={this.addListItem} />
                 <div className="divider-container">
-                  <hr id="divider" />
+                    <hr id="divider" />
                 </div>
                 <UserList
                     currentList={this.state.currentList}
@@ -101,7 +113,7 @@ class App extends React.Component {
                     addNoteValue={this.addNoteValue}
                     clearUserList={this.clearUserList}
                 />
-                <Footer />
+                <Footer avgPopularity={this.state.avgPopularity} />
             </div>
         );
     }

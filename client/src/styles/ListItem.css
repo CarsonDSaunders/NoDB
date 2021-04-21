@@ -14,7 +14,7 @@
 }
 
 .list-point {
-    list-style-type:none;
+    list-style-type: none;
     margin: 0;
     padding: 0;
 }
@@ -66,6 +66,7 @@
 
 .pencil-toggle {
     color: green;
+
 }
 
 .fa-trash {
@@ -82,7 +83,8 @@
     right: 0;
     bottom: 0;
     background-color: rgba(155, 155, 155, 0.75);
-    background: url(data:;base64,iVBORw0KGgoAAAANSUhEUgAAAAIAAAACCAYAAABytg0kAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAABl0RVh0U29mdHdhcmUAUGFpbnQuTkVUIHYzLjUuNUmK/OAAAAATSURBVBhXY2RgYNgHxGAAYuwDAA78AjwwRoQYAAAAAElFTkSuQmCC) repeat scroll transparent\9;
+    background: url(data:;base64,iVBORw0KGgoAAAANSUhEUgAAAAIAAAACCAYAAABytg0kAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAABl0RVh0U29mdHdhcmUAUGFpbnQuTkVUIHYzLjUuNUmK/OAAAAATSURBVBhXY2RgYNgHxGAAYuwDAA78AjwwRoQYAAAAAElFTkSuQmCC)
+        repeat scroll transparent\9;
     /* ie fallback png background image */
     z-index: 9999;
     color: white;
@@ -104,6 +106,7 @@
     height: 2em;
     width: 10em;
     font-family: "Roboto", sans-serif;
+    outline: none;
 }
 
 .artist-title {
@@ -114,4 +117,15 @@
     justify-content: center;
 }
 
-.popularity {}
+.listItemType {
+    font-style: italic;
+    font-weight: 300;
+}
+
+.note-editor-btn:active {
+    color: green;
+    border-color: green;
+}
+
+.popularity {
+}

@@ -42,7 +42,7 @@ app.put('/list/:id', (req, res) => {
 })
 
 app.delete('/list/:id', (req, res) => {
-    const itemID = req.params.id;
+    const itemID = Number(req.params.id);
     let correctID = userList.findIndex((ele, i) => (userList[i].listId === itemID))
     userList.splice(correctID, 1)
     res.status(200).send(userList);

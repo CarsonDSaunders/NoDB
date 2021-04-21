@@ -1,0 +1,29 @@
+.footer-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: auto;
+    align-items: center;
+}
+
+.footer-text-span {
+    width: 45em;
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    align-items: center;
+}
+
+.footer-text {
+    color: white;
+    font-size: 2em;
+    font-weight: 300;
+    line-height: 0.5em;
+}
+
+.footer-text-small {
+    color: white;
+    font-size: 1.5em;
+    font-weight: 300;
+    line-height: 0.5em;
+}
